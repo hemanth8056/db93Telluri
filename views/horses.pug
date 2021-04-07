@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+  - let horses=[{horsename:"Treasure",habitat:"Trees",classification:" phylum Chordata",price:500},{horsename:"jack",habitat:"cliffs",classification:"subphylum Vertebrata",price:700},{horsename:"Brichardi",habitat:"shelter",classification:"Perissodactyla",price:1000}]
+  div(class="container-fluid mt-3")
+  div(class="row")
+    each horse,index in horses
+        div(class="col-sm-4 m-1 p-3"  onclick=`buy(${index})`) #{horse.horsename} - #{horse.habitat} - #{horse.classification} - #{horse.price}
+  script.
+     
+      function buy(itemNo)
+      {
+        alert(`You purchased Item ${itemNo+1}`)
+      }

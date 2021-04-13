@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+
+  - let horseid = toShow._id
+  - let horsename = toShow.horsename
+  - let horseprice = toShow.price
+  - let horsehabitat = toShow.habitat
+  div
+    div.row
+      div(class='costumeAttr mr-3') horse ID is:
+      div #{horseid}
+    div.row
+      div(class='costumeAttr mr-3') horse name is:
+      div #{horsename}
+    div.row
+      div(class='costumeAttr mr-3') horsehabitate is:
+      div #{horsehabitat}
+    div.row
+      div(class='costumeAttr mr-3') horse price is:
+      div #{horseprice}

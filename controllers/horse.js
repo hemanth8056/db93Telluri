@@ -40,8 +40,17 @@ exports.horse_create_post = async function(req, res) {
     }
 };
 // Handle horse delete form on DELETE.
-exports.horse_delete = function(req, res) {
-    res.send('NOT IMPLEMENTED: horse delete DELETE ' + req.params.id);
+exports.horse_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+        result = await horse.findByIdAndDelete(req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
+    }
+
 };
 // Handle horse update form on PUT.
 exports.horse_update_put = async function(req, res) {
@@ -49,11 +58,10 @@ exports.horse_update_put = async function(req, res) {
     ${JSON.stringify(req.body)}`)
     try {
         let toUpdate = await horse.findById(req.params.id)
-        if (req.body.horsename) toUpdate.horsename =
-            req.body.horsename;
+        if (req.body.horsename) toUpdate.horsename = req.body.horsename;
         if (req.body.habitat) toUpdate.habitat = req.body.habitat;
         if (req.body.classification) toUpdate.classification = req.body.classification;
-        if (req.body.cost) toUpdate.price = req.body.price;
+        if (req.body.price) toUpdate.price = req.body.price;
         let result = await toUpdate.save();
         console.log("Sucess " + result)
         res.send(result)
@@ -72,5 +80,40 @@ exports.horse_view_all_Page = async function(req, res) {
     } catch (err) {
         res.send(`{"error": ${err}}`)
         res.status(500);
+    }
+};
+// Handle a show one view with id specified by query
+exports.horse_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try {
+        result = await horse.findById(req.query.id)
+        res.render('horsedetail', { title: 'horse Detail', toShow: result });
+    } catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+// Handle building the view for creating a costume.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.horse_create_Page = function(req, res) {
+    console.log("create view")
+    try {
+        res.render('horsecreate', { title: 'horse Create' });
+    } catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+// Handle building the view for updating a costume.
+// query provides the id
+exports.horse_update_Page = async function(req, res) {
+    console.log("update view for item " + req.query.id)
+    try {
+        let result = await horse.findById(req.query.id)
+        res.render('horseupdate', { title: 'horse Update', toShow: result });
+    } catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
     }
 };

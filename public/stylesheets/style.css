@@ -11,3 +11,27 @@ a {
     background-color: aquamarine;
     width: 120px;
 }
+
+#myTitle {
+    color: #123456;
+    font-weight: 700;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: underline;
+}
+
+.Riding {
+    margin-right: 2px;
+    margin-bottom: 0;
+    padding: 10px;
+    justify-content: center;
+    font-weight: bold;
+    border-bottom: 2px solid blueviolet;
+    border-left: 2px solid gray;
+    background-color: rgb(21, 209, 209);
+    border-radius: 1px;
+}
+
+.Riding:hover {
+    background-color: rgb(4, 255, 255);
+    color: black;
+}

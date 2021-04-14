@@ -10,6 +10,9 @@ router.get('/detail', horse_controlers.horse_view_one_Page);
 router.get('/create', horse_controlers.horse_create_Page);
 /* GET create update page */
 router.get('/update', horse_controlers.horse_update_Page);
+/* GET create costume page */
+router.get('/delete', horse_controlers.horse_delete_Page);
+
 
 
 

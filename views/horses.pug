@@ -6,9 +6,13 @@ block content
   div(class="container-fluid mt-3")
   div(class="row")
     each horse,index in horses
-        div(class="col-sm-4 m-1 p-3"  onclick=`buy(${index})`) #{horse.horsename} - #{horse.habitat} - #{horse.classification} - #{horse.price}
+      - let destination = `dispatch(\"/horse/update?id=${horse._id}\")`
+        div(class="col-sm-4 m-1 p-3") #{horse.horsename} - #{horse.habitat} - #{horse.classification} - #{horse.price}
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
   script.
-     
+      function dispatch(path){
+      window.location.href=path
+      }
       function buy(itemNo)
       {
         alert(`You purchased Item ${itemNo+1}`)

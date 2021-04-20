@@ -2,21 +2,23 @@ extends layout
 
 block content
   h1= title
-
-  - let horseid = toShow._id
-  - let horsename = toShow.horsename
-  - let horseprice = toShow.price
-  - let horsehabitat = toShow.habitat
-  div
-    div.row
-      div(class='costumeAttr mr-3') horse ID is:
-      div(class="Riding") #{horseid}
-    div.row
-      div(class='costumeAttr mr-3') horse name is:
-      div(class="Riding") #{horsename}
-    div.row
-      div(class='costumeAttr mr-3') horsehabitate is:
-      div(class="Riding") #{horsehabitat}
-    div.row
-      div(class='costumeAttr mr-3') horse price is:
-      div(class="Riding") #{horseprice}
+  if(toShow == null)
+    h2 no instance to show details 
+  else 
+    - let horseid = toShow._id
+    - let horsename = toShow.horsename
+    - let horseprice = toShow.price
+    - let horsehabitat = toShow.habitat
+    div
+      div.row
+        div(class='costumeAttr mr-3') horse ID is:
+        div(class="Riding") #{horseid}
+      div.row
+        div(class='costumeAttr mr-3') horse name is:
+        div(class="Riding") #{horsename}
+      div.row
+        div(class='costumeAttr mr-3') horsehabitate is:
+        div(class="Riding") #{horsehabitat}
+      div.row
+        div(class='costumeAttr mr-3') horse price is:
+        div(class="Riding") #{horseprice}

@@ -30,13 +30,16 @@ exports.horse_create_post = async function(req, res) {
     // { horsename: "Treasure", habitat: "Trees", classification: " phylum Chordata", price: 500 }
     document.horsename = req.body.horsename;
     document.habitat = req.body.habitat;
-    document.classification = req.body.classification;
+    document.price = req.body.price;
     try {
         let result = await document.save();
+        console.log(result)
         res.send(result);
     } catch (err) {
-        res.send(`{"error": ${err}}`)
-        res.status(500);
+        console.log("hello")
+        console.log(err)
+        res.send(err)
+        res.status(500)
     }
 };
 // Handle horse delete form on DELETE.

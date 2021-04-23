@@ -2,13 +2,20 @@ extends layout
 
 block content
   h1= title
-  - let horses=[{horsename:"Treasure",habitat:"Trees",classification:" phylum Chordata",price:500},{horsename:"jack",habitat:"cliffs",classification:"subphylum Vertebrata",price:700},{horsename:"Brichardi",habitat:"shelter",classification:"Perissodactyla",price:1000}]
+  //- let horses=[{horsename:"Treasure",habitat:"Trees",classification:" phylum Chordata",price:500},{horsename:"jack",habitat:"cliffs",classification:"subphylum Vertebrata",price:700},{horsename:"Brichardi",habitat:"shelter",classification:"Perissodactyla",price:1000}]
+  - let horses = results
+  - let destinationcreate = `dispatchCreate(\"/horses/create\")`
   div(class="container-fluid mt-3")
+    button.btn( class="btn-success ml-1 btn-lg", onclick= destinationcreate) Create
   div(class="row")
     each horse,index in horses
-      - let destination = `dispatch(\"/horse/update?id=${horse._id}\")`
-        div(class="col-sm-4 m-1 p-3") #{horse.horsename} - #{horse.habitat} - #{horse.classification} - #{horse.price}
-          button.btn( class="btn-primary ml-1", onclick= destination) Update
+      - let destinationupdate = `dispatch(\"/horses/update?id=${horse._id}\")`
+      -let destinationdetail =   `dispatch(\"/horses/detail?id=${horse._id}\")`
+      - let destinationdelete = `dispatchDelete(\"/horses/delete?id=${horse._id}\")`
+        div(class="col-sm-4 m-1") #{horse.horsename} - #{horse.habitat} - #{horse.classification} - #{horse.price}
+          button.btn( class="btn-success ml-1", onclick= destinationdetail) Detail
+          button.btn( class="btn-primary ml-1", onclick= destinationupdate) Update
+          button.btn( class="btn-primary ml-1", onclick= destinationdelete) Delete
   script.
       function dispatch(path){
       window.location.href=path
@@ -16,4 +23,11 @@ block content
       function buy(itemNo)
       {
         alert(`You purchased Item ${itemNo+1}`)
+      }
+
+      function dispatchCreate(path){
+        window.location.href=path
+      }
+      function dispatchDelete(path){
+        window.location.href=path
       }

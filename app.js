@@ -32,7 +32,7 @@ async function recreateDB() {
         if (err) return console.error(err);
         console.log("Second object saved")
     });
-    let instance3 = new horse({ horsename: "Brichardi", habitat: "shelter", classification: "Perissodactyla", price: 1000 });
+    let instance3 = new horse({ horsename: "Brichardi", habitat: "shelter", classification: "Perissodactyla", price: 800 });
     instance3.save(function(err, doc) {
         if (err) return console.error(err);
         console.log("Third object saved")

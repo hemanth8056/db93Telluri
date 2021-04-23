@@ -13,7 +13,7 @@ block content
     div.row(class='mb-2')
       div.mr-1 ID is
       div #{horseid}
-    - let actionid = "/resource/resource/horses/" + horseid
+    - let actionid = "/resource/resource/horse/" + horseid
     form(id='horseForm', action= actionid, method="PUT")
       div.form-group
           label.costumeAttr(for='horsename') horse name
